@@ -1,0 +1,301 @@
+.japanese-learning {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  .progress-bar-wrapper {
+    padding: 3rem 0 2rem;
+  }
+
+  .progress-track {
+    position: relative;
+    height: 120px;
+  }
+
+  .progress-line {
+    position: absolute;
+    left: 0;
+    bottom: 40px;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 183, 197, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFB7C5, #FF6B9D, #C2185B);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .continuing-line {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFA500, rgba(255, 165, 0, 0.3));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    animation: continuingPulse 3s infinite;
+
+    &:after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #FFD700;
+      font-size: 16px;
+      animation: arrowPulse 1.5s infinite;
+    }
+  }
+
+  @keyframes continuingPulse {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes arrowPulse {
+    0%, 100% {
+      transform: translateY(-50%) translateX(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-50%) translateX(5px);
+      opacity: 1;
+    }
+  }
+
+  .progress-node {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+
+    &:hover {
+      .node-dot {
+        transform: scale(1.3);
+        box-shadow: 0 0 15px rgba(255, 107, 157, 0.6);
+      }
+    }
+
+    &.active {
+      .node-dot {
+        background: #FF6B9D;
+        border-color: #FFB7C5;
+        transform: scale(1.3);
+      }
+      .node-popup {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    &.n1-node {
+      .node-dot {
+        background: #FFD700;
+        border-color: #FFA500;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        animation: n1Pulse 2s infinite;
+      }
+
+      .n1-sparkle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          background: #FFF;
+          border-radius: 50%;
+          box-shadow: 0 0 6px #FFF;
+          animation: sparkleBefore 1.5s infinite;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          background: #FFF;
+          border-radius: 50%;
+          box-shadow: 0 0 6px #FFF;
+          animation: sparkleAfter 1.5s infinite 0.75s;
+        }
+      }
+    }
+  }
+
+  @keyframes n1Pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.6);
+    }
+  }
+
+  @keyframes sparkleBefore {
+    0%, 100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(0deg) translateY(-14px) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) translateY(-14px) scale(1);
+    }
+  }
+
+  @keyframes sparkleAfter {
+    0%, 100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(90deg) translateY(-14px) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(90deg) translateY(-14px) scale(1);
+    }
+  }
+
+  .node-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #FF6B9D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+
+    .dot-icon {
+      font-size: 10px;
+    }
+  }
+
+  .node-label {
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .node-period {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+  }
+
+  .node-level {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FFB7C5;
+    white-space: nowrap;
+  }
+
+  .node-score {
+    margin-top: 6px;
+    position: relative;
+    width: 60px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .score-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #FFB7C5, #FF6B9D);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  .score-text {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Courier New', monospace;
+  }
+
+  .node-popup {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    width: 280px;
+    background: rgba(20, 20, 40, 0.95);
+    border: 1px solid rgba(255, 107, 157, 0.4);
+    border-radius: 10px;
+    padding: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+
+    .popup-desc {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0 0 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.75rem;
+      padding: 3px 0;
+      padding-left: 15px;
+      position: relative;
+      line-height: 1.4;
+
+      &:before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #FF6B9D;
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .progress-node.active {
+    .node-popup {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+      pointer-events: auto;
+    }
+  }
+}

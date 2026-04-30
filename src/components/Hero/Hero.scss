@@ -1,0 +1,151 @@
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a15 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(0, 229, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 0, 110, 0.05) 0%, transparent 50%);
+    z-index: 1;
+  }
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-name {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  min-height: 1.3em;
+}
+
+.hero-name-typed {
+  background: linear-gradient(135deg, #00E5FF, #7C4DFF, #FF006E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: #00E5FF;
+  margin-left: 4px;
+  animation: blink 0.8s infinite;
+  vertical-align: text-bottom;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 30px;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-keyword {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 1rem;
+  color: rgba(0, 229, 255, 0.4);
+  margin-bottom: 60px;
+  min-height: 1.5em;
+
+  span {
+    display: inline-block;
+    animation: keywordFade 3s ease-in-out infinite;
+  }
+}
+
+@keyframes keywordFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.hero-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+
+  .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid #00E5FF;
+    border-bottom: 2px solid #00E5FF;
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
+  50% { transform: rotate(45deg) translateY(8px); opacity: 1; }
+}
+
+.hero-bg-keywords {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  span {
+    position: absolute;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: rgba(0, 229, 255, 0.08);
+    animation: floatKeyword 20s linear infinite;
+
+    &:nth-child(odd) {
+      color: rgba(255, 0, 110, 0.06);
+    }
+  }
+}
+
+@keyframes floatKeyword {
+  0% { transform: translateY(0); opacity: 0.05; }
+  50% { opacity: 0.12; }
+  100% { transform: translateY(-100px); opacity: 0.05; }
+}
