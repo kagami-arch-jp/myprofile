@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "node build/webpack5 dev",
-    "build": "node build/webpack5 build",
+    "build": "node build/webpack5 build && node build/gitio",
     "serve": "cross-env ENV=PROD sptcd -d -rindex.s -wserver"
   },
   "dependencies": {
