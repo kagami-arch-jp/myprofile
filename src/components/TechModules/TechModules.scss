@@ -43,7 +43,7 @@
 .bento-card {
   opacity: 0;
   transform: translateY(30px) scale(0.9);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
   transition-delay: calc(var(--card-index, 0) * 0.1s);
   background: rgba(20, 20, 40, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -55,6 +55,13 @@
   position: relative;
   overflow: hidden;
   cursor: default;
+  filter: grayscale(100%) brightness(0.5);
+
+  &.card-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: grayscale(0%) brightness(1);
+  }
 
   &::before {
     content: '';
@@ -149,11 +156,6 @@
 @keyframes cardPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
   50% { box-shadow: 0 0 30px 5px rgba(0, 229, 255, 0.1); }
-}
-
-.module-visible .bento-card {
-  opacity: 1;
-  transform: translateY(0) scale(1);
 }
 
 .bento-icon {

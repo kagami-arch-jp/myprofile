@@ -140,13 +140,3 @@
   color: rgba(255, 255, 255, 0.3);
   margin-top: auto;
 }
-
-@media (max-width: 768px) {
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card-wrapper {
-    height: 300px;
-  }
-}
