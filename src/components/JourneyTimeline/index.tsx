@@ -4,7 +4,14 @@ import { useI18n } from '@/i18n'
 
 export default function JourneyTimeline() {
   const { t } = useI18n()
-  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({})
+
+  const handleNodeClick = (nodeId: string, event: React.MouseEvent) => {
+    const nodeElement = (event.currentTarget as HTMLElement).closest('.timeline-node') as HTMLElement
+    if (nodeElement) {
+      nodeElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
 
   return (
     <section className="journey-timeline" data-module-id="journeyTimeline">
@@ -15,16 +22,22 @@ export default function JourneyTimeline() {
           <div
             key={node.id}
             className={`timeline-node ${node.isTransition ? 'timeline-node--transition' : ''}`}
-            style={{'--node-index': idx} as React.CSSProperties}
+             style={{'--node-index': String(idx)} as any}
           >
             <div className="timeline-dot">
               {node.isTransition && <span className="dot-icon">{node.transitionIcon}</span>}
             </div>
-            <div className={`timeline-card ${expandedId === node.id ? 'expanded' : ''}`}>
+            <div className={`timeline-card ${expandedIds[node.id] ? 'expanded' : ''}`}>
               <div
-                className="timeline-card-header"
-                onClick={() => setExpandedId(expandedId === node.id ? null : node.id)}
-              >
+                 className="timeline-card-header"
+                 onClick={(e) => {
+                   !expandedIds[node.id] && handleNodeClick(node.id, e)
+                   setExpandedIds(prev=>({
+                     ...prev,
+                     [node.id]: !prev[node.id],
+                   }))
+                 }}
+               >
                 <div className="card-period">{node.period}</div>
                 <div className="card-company">
                   {node.companyUrl ? (

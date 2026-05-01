@@ -14,14 +14,16 @@
 .timeline-line {
   position: absolute;
   left: 40px;
-  top: 0;
-  bottom: 0;
+  top: -50px;
+  bottom: -50px;
   width: 3px;
   background: linear-gradient(180deg,
-    #00E5FF 0%,
+    transparent 0%,
+    #00E5FF 15%,
     #00E5FF 75%,
     #FFB7C5 75%,
-    #FFB7C5 100%
+    #FFB7C5 85%,
+    transparent 100%
   );
   transform: scaleY(0);
   transform-origin: top;
@@ -339,14 +341,30 @@
 @media (max-width: 768px) {
   .timeline {
     padding-left: 10px;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 229, 255, 0.3);
+      border-radius: 2px;
+    }
   }
 
   .timeline-line {
     left: 28px;
+    top: -30px;
+    bottom: -30px;
   }
 
   .timeline-node {
     padding-left: 55px;
+    scroll-margin: 20px;
   }
 
   .timeline-dot {

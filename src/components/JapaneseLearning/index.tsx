@@ -31,8 +31,30 @@ export default function JapaneseLearning() {
   const { t } = useI18n()
   const [activeId, setActiveId] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const activeMilestone = t.japaneseLearning.milestones.find(m => m.id === activeId)
   const animatedScore = useScoreAnimation(activeMilestone?.score)
+
+  const handleNodeClick = (milestoneId: string, event: React.MouseEvent) => {
+    setActiveId(activeId === milestoneId ? null : milestoneId)
+
+    if (scrollContainerRef.current) {
+      const nodeElement = event.currentTarget as HTMLElement
+      const container = scrollContainerRef.current
+      const nodeRect = nodeElement.getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+
+      const nodeCenter = nodeRect.left + nodeRect.width / 2
+      const containerCenter = containerRect.left + containerRect.width / 2
+      const scrollLeft = container.scrollLeft
+      const targetScrollLeft = scrollLeft + (nodeCenter - containerCenter)
+
+      container.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   useEffect(() => {
     if (!activeId) return
@@ -64,7 +86,7 @@ export default function JapaneseLearning() {
   return (
     <section className="japanese-learning" data-module-id="japaneseLearning" ref={sectionRef}>
       <h2 className="section-title">{t.japaneseLearning.title}</h2>
-      <div className="progress-bar-wrapper">
+      <div className="progress-bar-wrapper" ref={scrollContainerRef}>
         <div className="progress-track">
           {milestones.map((milestone, idx) => {
             const isStart = milestone.isStart
@@ -76,7 +98,7 @@ export default function JapaneseLearning() {
                  key={milestone.id}
                  className={`progress-node ${activeId === milestone.id ? 'active' : ''} ${milestone.isN1 ? 'n1-node' : ''}`}
                  style={{ left: `${left}%`, width: `${segmentWidth}%` }}
-                 onClick={() => setActiveId(activeId === milestone.id ? null : milestone.id)}
+                 onClick={(e) => handleNodeClick(milestone.id, e)}
                >
                  <div className="node-dot">
                    {isStart && <span className="dot-icon">🌸</span>}
