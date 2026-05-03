@@ -82,11 +82,11 @@ export default function() {
             {showDividers && <div className="section-divider" />}
             <SSRSolution />
             {showDividers && <div className="section-divider" />}
-            <JapaneseLearning />
+            <ChallengeCards />
             {showDividers && <div className="section-divider" />}
             <OpenSourceShowcase />
             {showDividers && <div className="section-divider" />}
-            <ChallengeCards />
+            <JapaneseLearning />
             {showDividers && <div className="section-divider" />}
             <Footer />
           </>
