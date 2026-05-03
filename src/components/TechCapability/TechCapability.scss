@@ -1,0 +1,460 @@
+.tech-capability {
+  padding: 80px 24px;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.capability-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.capability-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.4);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: #00E5FF;
+    color: #00E5FF;
+  }
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+.tab-name {
+  font-weight: 600;
+}
+
+.tab-link {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  margin-left: 4px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.tech-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slideUp 0.4s ease forwards;
+
+  @for $i from 0 through 12 {
+    &:nth-child(#{$i + 1}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 229, 255, 0.1);
+  }
+
+  &--large {
+    grid-column: span 2;
+  }
+
+  &--wide {
+    grid-column: span 2;
+  }
+}
+
+.tech-card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.tech-card-name {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.tech-card-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+// Demo layout styles (from OpenSourceShowcase)
+.demo-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  animation: fadeIn 0.3s ease;
+}
+
+.demo-diagram {
+  .diagram-visual {
+    position: relative;
+    height: 250px;
+    margin: 20px 0;
+  }
+
+  .diagram-hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 229, 255, 0.1);
+    border: 2px solid #00E5FF;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .diagram-lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+
+    line {
+      stroke: rgba(0, 229, 255, 0.3);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+    }
+
+    circle {
+      fill: #00E5FF;
+    }
+  }
+}
+
+.diagram-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(124, 77, 255, 0.1);
+  border: 1px solid rgba(124, 77, 255, 0.4);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.diagram-principles {
+  margin-top: 20px;
+
+  .principle {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #7C4DFF;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 0 8px 8px 0;
+
+    strong {
+      color: #7C4DFF;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+    }
+  }
+}
+
+.demo-interactive {
+  .counter-demo {
+    margin: 20px 0;
+  }
+
+  .counter-grid {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .counter-component {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+
+    .comp-label {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .counter-value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 8px 0;
+
+      &.bump {
+        animation: bump 0.3s ease;
+      }
+    }
+
+    .counter-btns {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+
+      button {
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        color: #00E5FF;
+        border-radius: 6px;
+        padding: 4px 12px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background: rgba(0, 229, 255, 0.2);
+        }
+      }
+    }
+  }
+}
+
+.theme-demo {
+  .theme-grid {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 16px 0;
+  }
+
+  .theme-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.active {
+      border-color: #fff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.demo-log {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+
+  h4 {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 12px;
+  }
+
+  .log-content {
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+  }
+
+  .log-entry {
+    padding: 4px 0;
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .log-empty {
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+  }
+}
+
+// SPTC showcase styles
+.sptc-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  animation: fadeIn 0.3s ease;
+}
+
+.sptc-demo-list {
+  .sptc-demo-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover, &.active {
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.05);
+    }
+
+    h4 {
+      color: #00E5FF;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+    }
+  }
+}
+
+.sptc-more-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(124, 77, 255, 0.05);
+  border: 1px solid rgba(124, 77, 255, 0.2);
+  border-radius: 8px;
+
+  p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+  }
+
+  .npm-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #7C4DFF;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.sptc-code-viewer {
+  .code-header {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+
+    .code-filename {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .code-block {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 0;
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bump {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@media (max-width: 768px) {
+  .capability-tabs {
+    gap: 8px;
+  }
+
+  .capability-tab {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tech-card--large,
+  .tech-card--wide {
+    grid-column: span 2;
+  }
+
+  .demo-layout,
+  .sptc-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .counter-grid {
+    flex-direction: column;
+  }
+}

@@ -1,17 +1,15 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.scss'
 
 import {useProgressiveEnhancement} from '@/hooks/useProgressiveEnhancement'
 import {I18nProvider, LanguageSwitcher} from '@/i18n'
 
 import Hero from '@/components/Hero'
-import TechModules from '@/components/TechModules'
+import TechCapability from '@/components/TechCapability'
 import JourneyTimeline from '@/components/JourneyTimeline'
-import JapaneseLearning from '@/components/JapaneseLearning'
-import OpenSourceShowcase from '@/components/OpenSourceShowcase'
-import ChallengeCards from '@/components/ChallengeCards'
-import SSRSolution from '@/components/SSRSolution'
-import Footer from '@/components/Footer'
+import TechSolutions from '@/components/TechSolutions'
+import AboutContact from '@/components/AboutContact'
+import SideNavigation from '@/components/SideNavigation'
 
 export async function init() {}
 
@@ -58,37 +56,25 @@ function ScrollProgress() {
 
 export default function() {
   const {booted} = useProgressiveEnhancement()
-  const [showDividers, setShowDividers] = useState(false)
-
-  useEffect(() => {
-    if (booted) {
-      setTimeout(() => setShowDividers(true), 500)
-    }
-  }, [booted])
 
   return (
     <I18nProvider>
       <LanguageSwitcher />
       <MouseGlow />
       <ScrollProgress />
+      <SideNavigation />
       <main className="app">
         <Hero booted={booted} />
         {booted && (
           <>
-            {showDividers && <div className="section-divider" />}
-            <TechModules />
-            {showDividers && <div className="section-divider" />}
+            <div className="section-divider" />
+            <TechCapability />
+            <div className="section-divider" />
             <JourneyTimeline />
-            {showDividers && <div className="section-divider" />}
-            <SSRSolution />
-            {showDividers && <div className="section-divider" />}
-            <ChallengeCards />
-            {showDividers && <div className="section-divider" />}
-            <OpenSourceShowcase />
-            {showDividers && <div className="section-divider" />}
-            <JapaneseLearning />
-            {showDividers && <div className="section-divider" />}
-            <Footer />
+            <div className="section-divider" />
+            <TechSolutions />
+            <div className="section-divider" />
+            <AboutContact />
           </>
         )}
       </main>

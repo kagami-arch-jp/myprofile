@@ -1,0 +1,222 @@
+.about-contact {
+  padding: 80px 24px;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.learning-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.progress-bar-container {
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  padding-top: 20px;
+  min-width: max-content;
+}
+
+.progress-line {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00E5FF, #7C4DFF, #FF006E);
+  border-radius: 2px;
+}
+
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  min-width: 100px;
+
+  &:hover .milestone-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+  }
+
+  &--n1 .milestone-dot {
+    background: #FFD700;
+    border-color: #FFD700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+
+  &--start .milestone-dot {
+    background: #00E5FF;
+  }
+}
+
+.milestone-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #7C4DFF;
+  border: 3px solid #0a0a15;
+  transition: all 0.3s ease;
+}
+
+.milestone-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.milestone-period {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Fira Code', monospace;
+}
+
+.milestone-level {
+  font-size: 0.85rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.milestone-score {
+  font-size: 0.75rem;
+  color: #00E5FF;
+}
+
+.milestone-detail {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+
+  h3 {
+    color: #00E5FF;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+
+  .detail-period {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .detail-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .detail-list {
+    padding-left: 20px;
+
+    li {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+  }
+}
+
+.footer-terminal {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 16px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-body {
+  padding: 20px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.7);
+
+  .terminal-prompt {
+    color: #00E5FF;
+    margin-right: 8px;
+  }
+}
+
+.terminal-contacts {
+  display: flex;
+  gap: 16px;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.3);
+    color: #00E5FF;
+  }
+}
+
+.contact-icon {
+  font-size: 1rem;
+}
+
+.link-arrow {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .learning-content {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-bar {
+    gap: 24px;
+  }
+
+  .milestone {
+    min-width: 80px;
+  }
+}

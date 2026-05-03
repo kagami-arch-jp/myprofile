@@ -58,8 +58,13 @@ export interface DemoScenario {
 
 export interface ChallengeCardData {
   id: string
+  icon: string
   challenge: string
+  challengeDetail: string
   solution: string
+  solutionDetail: string
+  techStack: string[]
+  result: string
   codeSnippet: string
 }
 
@@ -124,6 +129,7 @@ export interface ProfileData {
   }
   challengeCards: {
     title: string
+    subtitle: string
     cards: ChallengeCardData[]
   }
   footer: {

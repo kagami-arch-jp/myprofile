@@ -1,0 +1,298 @@
+.tech-solutions {
+  padding: 80px 24px;
+  min-height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.solutions-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 60px;
+  font-size: 0.95rem;
+}
+
+.solutions-section {
+  margin-bottom: 60px;
+}
+
+.section-heading {
+  color: #00E5FF;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin-bottom: 36px;
+}
+
+.section-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.3), transparent);
+  margin: 0 auto 60px;
+}
+
+// Overview grid
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.overview-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+
+  h4 {
+    color: #00E5FF;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.ssr-points-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ssr-point-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.4s ease forwards;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+
+  &:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-4px);
+  }
+}
+
+.ssr-point-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.ssr-point-title {
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.ssr-point-desc {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+// Cases grid (flip cards)
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.case-card {
+  perspective: 1200px;
+  cursor: pointer;
+  min-height: 380px;
+}
+
+.case-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.case-card.flipped .case-inner {
+  transform: rotateY(180deg);
+}
+
+.case-front,
+.case-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.case-front {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  &:hover {
+    border-color: rgba(255, 165, 0, 0.3);
+  }
+}
+
+.case-back {
+  background: rgba(0, 229, 255, 0.04);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  transform: rotateY(180deg);
+}
+
+.case-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.case-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: rgba(255, 165, 0, 0.15);
+  color: #FFA500;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.solution-badge {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00E5FF;
+}
+
+.case-title {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.case-detail {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.case-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.tech-tag {
+  background: rgba(124, 77, 255, 0.12);
+  color: #7C4DFF;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(124, 77, 255, 0.2);
+}
+
+.case-hint {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  margin-top: auto;
+}
+
+.case-result {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(0, 229, 255, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+.result-label {
+  color: #00E5FF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.result-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.case-code {
+  width: 100%;
+  text-align: left;
+  margin-top: auto;
+
+  pre {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.8);
+    overflow-x: auto;
+    margin: 0;
+    line-height: 1.5;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .ssr-points-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ssr-points-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-card {
+    min-height: 340px;
+  }
+}

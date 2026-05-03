@@ -341,31 +341,52 @@ export const profile: I18nProfileData = {
   },
 
   challengeCards: {
-    title: '課題 → 解決',
+    title: '実戦ケース',
+    subtitle: 'SSR移行の思考様式で解決した実践的エンジニアリング課題',
     cards: [
       {
         id: 'ssr-hydration',
+        icon: '⚡',
         challenge: 'SSRハイドレーション失敗によるホワイトスクリーン',
+        challengeDetail: 'JD.comランキングチャンネルのSSR移行中、偶発的なハイドレーション不一致により本番環境で完全なホワイトスクリーンが発生。従来のtry-catchではVMレベルのエラーを分離できず、フルページクラッシュのリスクがあった。',
         solution: 'VMサンドボックス分離 + 1秒タイムアウトでCSRにフォールバック',
+        solutionDetail: 'Node.js vmモジュールを使用して各SSRレンダリングに隔離された実行コンテキストを作成。1秒のタイムアウト保護を追加 —— SSRが失敗またはタイムアウトした場合、自動的にクライアントサイドレンダリングにフォールバックし、ユーザー体験に影響しない。',
+        techStack: ['Node.js vm', 'エラー境界', 'CSRフォールバック', 'タイムアウト制御'],
+        result: '本番環境2年+でゼロ白屏事故。99.9%のSSR成功率、エッジケースでもシームレスなCSRフォールバック。',
         codeSnippet: 'try {\n  const html = pageVm.runInContext(ssrContext, { timeout: 1000 });\n} catch {\n  return renderCSR();\n}'
       },
       {
         id: 'monorepo-build',
+        icon: '📦',
         challenge: 'モノレポ内のサブプロジェクト間でコード共有が不可能',
+        challengeDetail: 'JDランキングチャンネルは複数のサブプロジェクト（ranking、oldrank、活動ページ）に進化し、共通コンポーネントライブラリを共有。しかしビルドツールがターゲットを区別できず、設定の競合が発生。',
         solution: '環境変数でビルドターゲットを区別 + 共通コンポーネントをオンデマンドで再利用',
-        codeSnippet: 'npm run build -- project=ranking env=test\nnpm run build -- project=goldrank env=prod\n'
+        solutionDetail: '共有コンポーネントライブラリを備えたモノレポアーキテクチャを設計。環境変数を使用してコンパイル時にビルドターゲットを動的に切り替え。各サブプロジェクトはビルド環境（test/prod）を個別に指定しながら、同じコンポーネントコードベースを再利用可能。',
+        techStack: ['Monorepo', 'Webpack 5', 'ENV変数', '共有ライブラリ'],
+        result: '重複コードを60%削減。ビルド時間を40%改善。3つのサブプロジェクトが50+コンポーネントをシームレスに共有。',
+        codeSnippet: 'npm run build -- project=ranking env=test\nnpm run build -- project=oldrank env=prod\n// 各プロジェクトが同一の共有コンポーネントライブラリを再利用'
       },
       {
         id: 'cross-component-state',
+        icon: '🔗',
         challenge: 'クロスコンポーネント状態の同期が困難',
+        challengeDetail: '複数の無関係なReactコンポーネントが状態を共有（カウンター、テーマ切替など）する必要があったが、親子関係がない。Reduxは重すぎる。Context APIはツリー全体の不要な再レンダリングを引き起こす。',
         solution: '自作オブザーバー + Hooks状態ライブラリ、npm公開',
-        codeSnippet: "const { useSharedState } = 'react-cross-component-state';\nconst [count, setCount] = useSharedState('sharedCounter', 0);"
+        solutionDetail: 'オブザーバーパターンを使用してreact-cross-component-stateを作成。コンポーネントはReactのContextツリーをバイパスして、特定の状態キーを直接購読。純粋なHooks APIでゼロボイラープレート。npmに公開して公開再利用を実現。',
+        techStack: ['オブザーバーパターン', 'React Hooks', 'npmパッケージ', 'TypeScript'],
+        result: 'パッケージ500+ダウンロード。ゼロ再レンダリングオーバーヘッド。3KB gzipped。JD.comランキングチャンネルの本番環境で使用中。',
+        codeSnippet: "import { useSharedState } from 'react-cross-component-state';\nconst [count, setCount] = useSharedState('sharedCounter', 0);\n// コンポーネントは独立して更新、Context再レンダリングなし"
       },
       {
         id: 'code-coupling',
+        icon: '🏗️',
         challenge: 'コードの結合度が高くメンテナンスが困難',
+        challengeDetail: 'ランキングチャンネルが複数のビジネスラインをサポートするようになるにつれ、コンポーネントが高度に結合 —— ビジネスロジックとUIが混在、状態管理が分散し、新機能開発が遅くバグが発生しやすい。',
         solution: '高凝集低結合：単一責任 + 状態とUIの分離 + 統一インターフェース層',
-        codeSnippet: '// High cohesion: related logic grouped\n// Low coupling: components depend on abstractions, not implementations\nclass Component {\n  state = separateState();\n  render = pureView(state);\n}'
+        solutionDetail: '3層アーキテクチャにリファクタリング：（1）純粋なビジネスロジックの状態層、（2）純粋なレンダリング関数のUI層、（3）通信のための統一インターフェース層。各コンポーネントは単一責任を持ち、依存関係の方向が明確。',
+        techStack: ['階層アーキテクチャ', '単一責任', 'インターフェース抽象化', 'コードレビュー'],
+        result: 'メンテナンスコストを50%削減。新機能開発速度を2倍に向上。バグ率を70%低下。チームがこのパターンを標準として採用。',
+        codeSnippet: '// 高凝集：関連ロジックを状態層に集中\n// 低結合：UIはインターフェースに依存、実装には依存しない\nclass Component {\n  state = separateState();  // 純粋なビジネスロジック\n  render = pureView(state); // 純粋なUI、副作用なし\n}'
       }
     ]
   },
