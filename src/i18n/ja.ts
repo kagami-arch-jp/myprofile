@@ -326,6 +326,20 @@ export const profile: I18nProfileData = {
     }
   },
 
+  ssrSolution: {
+    title: 'ゼロ改修 CSR → SSR 移行ソリューション',
+    subtitle: 'フロントエンドコードを変更せずにSSRに対応',
+    background: '従来のSSR移行では大量のコード修正が必要で、技術移行プロセスでバグが発生しやすい',
+    solution: 'Node.jsランタイムでブラウザのwindowオブジェクトを実装し、サーバーサイドレンダリングのグローバルオブジェクトとして使用',
+    advantage: 'SSR用のコード記述が必要な他チームの方式と比較して、開発技術変更によるバグ導入の可能性を回避',
+    points: [
+      { icon: '🔀', title: 'ゼロコード変更', description: 'フロントエンドコードはほぼ修正なしでSSRに対応可能' },
+      { icon: '🛡️', title: 'バグ防止', description: 'SSR特有のコード記述によるバグを回避' },
+      { icon: '⚡', title: '開発コスト削減', description: 'その後の開発プロセスでSSR用のコード調整が不要' },
+      { icon: '🎯', title: 'シームレス移行', description: 'CSRからSSRへの摩擦を最小化した移行' }
+    ]
+  },
+
   challengeCards: {
     title: '課題 → 解決',
     cards: [

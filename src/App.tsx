@@ -10,6 +10,7 @@ import JourneyTimeline from '@/components/JourneyTimeline'
 import JapaneseLearning from '@/components/JapaneseLearning'
 import OpenSourceShowcase from '@/components/OpenSourceShowcase'
 import ChallengeCards from '@/components/ChallengeCards'
+import SSRSolution from '@/components/SSRSolution'
 import Footer from '@/components/Footer'
 
 export async function init() {}
@@ -78,6 +79,8 @@ export default function() {
             <TechModules />
             {showDividers && <div className="section-divider" />}
             <JourneyTimeline />
+            {showDividers && <div className="section-divider" />}
+            <SSRSolution />
             {showDividers && <div className="section-divider" />}
             <JapaneseLearning />
             {showDividers && <div className="section-divider" />}

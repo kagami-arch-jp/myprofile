@@ -326,6 +326,20 @@ export const profile: I18nProfileData = {
     }
   },
 
+  ssrSolution: {
+    title: 'Zero-Change CSR → SSR Migration',
+    subtitle: 'Migrating CSR projects to SSR without code changes',
+    background: 'Traditional SSR migration requires extensive code adaptation, easily introducing bugs during tech transformation',
+    solution: 'Implemented browser window object in Node.js runtime as the global object for server-side rendering',
+    advantage: 'Compared to other teams\' SSR patterns that require code adjustments, this solution avoids bugs introduced by development tech changes',
+    points: [
+      { icon: '🔀', title: 'Zero Code Change', description: 'Frontend code requires almost no adjustment to adapt to SSR' },
+      { icon: '🛡️', title: 'Bug Prevention', description: 'Avoids bugs introduced by SSR-specific code patterns' },
+      { icon: '⚡', title: 'Low Development Cost', description: 'Subsequent development requires no SSR-specific code adjustments' },
+      { icon: '🎯', title: 'Seamless Migration', description: 'CSR to SSR migration with minimal friction' }
+    ]
+  },
+
   challengeCards: {
     title: 'Challenge → Solution',
     cards: [

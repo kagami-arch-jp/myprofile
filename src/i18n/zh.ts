@@ -326,6 +326,20 @@ export const profile: I18nProfileData = {
     }
   },
 
+  ssrSolution: {
+    title: '零改造成本 CSR → SSR 迁移方案',
+    subtitle: '让前端代码无需调整即可适配SSR',
+    background: '传统SSR迁移需要大量代码适配，容易在技改过程中引入bug',
+    solution: '在Node.js运行时中实现浏览器window对象，作为服务端渲染的全局对象',
+    advantage: '与其他团队需要区分SSR代码写法的方案相比，本方案规避了由于开发技改引入bug的可能',
+    points: [
+      { icon: '🔀', title: '零代码改动', description: '前端代码几乎无需调整即可适配SSR' },
+      { icon: '🛡️', title: '避免bug', description: '规避因SSR特殊代码写法引入的bug' },
+      { icon: '⚡', title: '降低开发成本', description: '后续开发过程无需为SSR场景调整代码' },
+      { icon: '🎯', title: '无缝迁移', description: 'CSR到SSR的平滑迁移，最小化摩擦' }
+    ]
+  },
+
   challengeCards: {
     title: '挑战 → 解决方案',
     cards: [

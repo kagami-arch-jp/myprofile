@@ -163,6 +163,21 @@ export interface OpenSourceShowcaseData {
   sptcViewDocs: string
 }
 
+export interface SSRSolutionPoint {
+  icon: string
+  title: string
+  description: string
+}
+
+export interface SSRSchemaData {
+  title: string
+  subtitle: string
+  background: string
+  solution: string
+  advantage: string
+  points: SSRSolutionPoint[]
+}
+
 export interface I18nProfileData {
   hero: ProfileData['hero']
   techModules: ProfileData['techModules']
@@ -171,5 +186,6 @@ export interface I18nProfileData {
   openSourceShowcase: OpenSourceShowcaseData
   stateEngineDemo: ProfileData['stateEngineDemo']
   challengeCards: ProfileData['challengeCards']
+  ssrSolution: SSRSchemaData
   footer: ProfileData['footer']
 }
