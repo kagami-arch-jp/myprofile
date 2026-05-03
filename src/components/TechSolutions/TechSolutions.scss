@@ -107,57 +107,82 @@
   margin: 0;
 }
 
-// Cases grid (flip cards)
+// Cases grid (slide-up cards)
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  align-items: start;
 }
 
 .case-card {
-  perspective: 1200px;
   cursor: pointer;
-  min-height: 380px;
+  height: 420px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .case-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.case-card.flipped .case-inner {
-  transform: rotateY(180deg);
 }
 
 .case-front,
 .case-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   border-radius: 12px;
   padding: 28px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
 }
 
 .case-front {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  transform: translateY(0);
+  z-index: 2;
 
   &:hover {
     border-color: rgba(255, 165, 0, 0.3);
+  }
+
+  .case-card.flipped & {
+    transform: translateY(-100%);
+    z-index: 1;
   }
 }
 
 .case-back {
   background: rgba(0, 229, 255, 0.04);
   border: 1px solid rgba(0, 229, 255, 0.2);
-  transform: rotateY(180deg);
+  transform: translateY(100%);
+  z-index: 1;
+
+  .case-card.flipped & {
+    transform: translateY(0);
+    z-index: 2;
+  }
 }
 
 .case-icon {
@@ -273,19 +298,13 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 1024px) {
-  .ssr-points-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
   .overview-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ssr-points-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cases-grid {
@@ -293,6 +312,6 @@
   }
 
   .case-card {
-    min-height: 340px;
+    height: 380px;
   }
 }

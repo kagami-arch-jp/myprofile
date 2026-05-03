@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react'
 import createSharedState from 'react-cross-component-state'
 import './TechCapability.scss'
 import { useI18n } from '@/i18n'
+import ScrollReveal from '@/components/ScrollReveal'
 
 const sharedCounter = createSharedState(0)
 const sharedTheme = createSharedState('#00E5FF')
@@ -155,11 +156,13 @@ export default function TechCapability() {
       {activeTab === 'techStack' && (
         <div className="tech-grid">
           {t.techModules.cards.map((card, idx) => (
-            <div key={card.id} className={`tech-card tech-card--${card.size}`} style={{ '--card-index': idx } as React.CSSProperties}>
-              <div className="tech-card-icon">{card.icon}</div>
-              <h3 className="tech-card-name">{card.name}</h3>
-              <p className="tech-card-desc">{card.description}</p>
-            </div>
+            <ScrollReveal key={card.id} animation="slideUp" delay={idx * 50}>
+              <div className={`tech-card tech-card--${card.size}`}>
+                <div className="tech-card-icon">{card.icon}</div>
+                <h3 className="tech-card-name">{card.name}</h3>
+                <p className="tech-card-desc">{card.description}</p>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       )}

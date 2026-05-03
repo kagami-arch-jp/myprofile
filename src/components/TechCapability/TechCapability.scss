@@ -74,14 +74,6 @@
   border-radius: 12px;
   padding: 24px;
   transition: all 0.3s ease;
-  opacity: 0;
-  animation: slideUp 0.4s ease forwards;
-
-  @for $i from 0 through 12 {
-    &:nth-child(#{$i + 1}) {
-      animation-delay: #{$i * 0.05}s;
-    }
-  }
 
   &:hover {
     border-color: rgba(0, 229, 255, 0.3);
